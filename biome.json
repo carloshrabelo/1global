@@ -23,5 +23,8 @@
 				"noArrayIndexKey":"off"
 			} 
 		}
-	}
+	},
+  "files": {
+    "ignore": ["src/components/ui/*.ts"]
+  }
 }

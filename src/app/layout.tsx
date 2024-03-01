@@ -1,3 +1,4 @@
+import { Toaster } from "@/components/ui/toaster";
 import StoreProvider from "@/lib/redux";
 import type { Metadata } from "next";
 import { ReactNode } from "react";
@@ -18,6 +19,7 @@ export default function RootLayout({
       <head />
       <body className={"min-h-screen bg-background font-sans antialiased"}>
         <StoreProvider>{children}</StoreProvider>
+        <Toaster />
       </body>
     </html>
   );
