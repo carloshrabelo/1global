@@ -1,3 +1,4 @@
+import StoreProvider from "@/lib/redux";
 import type { Metadata } from "next";
 import { ReactNode } from "react";
 import "./globals.css";
@@ -16,7 +17,7 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <head />
       <body className={"min-h-screen bg-background font-sans antialiased"}>
-        {children}
+        <StoreProvider>{children}</StoreProvider>
       </body>
     </html>
   );
