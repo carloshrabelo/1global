@@ -1,0 +1,50 @@
+"use client";
+
+import List from "@/components/List";
+import ListItem from "@/components/List/ListItem";
+import Pagination from "@/components/Pagination";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Button } from "@/components/ui/button";
+import { useGetUsersQuery } from "@/store/api/users";
+import { Pencil, UserRoundX } from "lucide-react";
+import * as React from "react";
+
+export default function Home() {
+  const [page, setPage] = React.useState(1);
+  const usersFilter = { page };
+  const { data: users } = useGetUsersQuery(usersFilter);
+
+  if (!users?.data) return;
+  return (
+    <div className="flex flex-col h-full">
+      <List className="flex-1">
+        {users.data.map((user) => (
+          <ListItem key={user.id} className="gap-3 flex-row">
+            <Avatar>
+              <AvatarImage src={user.avatar} />
+              <AvatarFallback>
+                {user.first_name[0]}
+                {user.last_name[0]}
+              </AvatarFallback>
+            </Avatar>
+            <div className="grid flex-1">
+              <div>
+                {user.first_name} {user.last_name}
+              </div>
+              <div>{user.email}</div>
+            </div>
+            <div className="flex gap-1">
+              <Button size="icon">
+                <Pencil className="h-4 w-4" />
+              </Button>
+              <Button size="icon" variant="destructive">
+                <UserRoundX className="h-4 w-4" />
+              </Button>
+            </div>
+          </ListItem>
+        ))}
+      </List>
+      <Pagination current={page} pages={users.total_pages} onClick={setPage} />
+    </div>
+  );
+}
