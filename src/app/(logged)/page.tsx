@@ -3,9 +3,10 @@
 import List from "@/components/List";
 import ListItem from "@/components/List/ListItem";
 import Pagination from "@/components/Pagination";
+import UserFormDialog from "@/components/User/UserFormDialog";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
-import { useGetUsersQuery } from "@/store/api/users";
+import { useGetUsersQuery, useUpdateUserMutation } from "@/store/api/users";
 import { Pencil, UserRoundX } from "lucide-react";
 import * as React from "react";
 
@@ -13,6 +14,7 @@ export default function Home() {
   const [page, setPage] = React.useState(1);
   const usersFilter = { page };
   const { data: users } = useGetUsersQuery(usersFilter);
+  const [updateUser] = useUpdateUserMutation();
 
   if (!users?.data) return;
   return (
@@ -34,9 +36,16 @@ export default function Home() {
               <div>{user.email}</div>
             </div>
             <div className="flex gap-1">
-              <Button size="icon">
-                <Pencil className="h-4 w-4" />
-              </Button>
+              <UserFormDialog
+                {...user}
+                onSubmit={(data) =>
+                  updateUser({ ...user, ...data, ...usersFilter })
+                }
+              >
+                <Button size="icon">
+                  <Pencil className="h-4 w-4" />
+                </Button>
+              </UserFormDialog>
               <Button size="icon" variant="destructive">
                 <UserRoundX className="h-4 w-4" />
               </Button>
