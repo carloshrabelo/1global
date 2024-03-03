@@ -10,7 +10,7 @@ export const userApi = baseApi.injectEndpoints({
         params,
       }),
     }),
-    createUsers: build.mutation<
+    createUser: build.mutation<
       User,
       Omit<User, "id" | "avatar"> & PaginationParams
     >({
@@ -61,4 +61,8 @@ export const userApi = baseApi.injectEndpoints({
   }),
 });
 
-export const { useGetUsersQuery, useUpdateUserMutation } = userApi;
+export const {
+  useGetUsersQuery,
+  useUpdateUserMutation,
+  useCreateUserMutation,
+} = userApi;
