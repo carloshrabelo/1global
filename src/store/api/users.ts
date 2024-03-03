@@ -58,6 +58,26 @@ export const userApi = baseApi.injectEndpoints({
         queryFulfilled.catch(patchResult.undo);
       },
     }),
+    removeUser: build.mutation<User, Pick<User, "id"> & PaginationParams>({
+      // page only for cache
+      query: ({ id }) => ({
+        url: `users/${id}`,
+        method: "DELETE",
+      }),
+      onQueryStarted({ id, page }, { dispatch, queryFulfilled }) {
+        const patchResult = dispatch(
+          userApi.util.updateQueryData(
+            "getUsers",
+            { page },
+            (draft: PaginationResponse<User>) => ({
+              ...draft,
+              data: draft.data.filter((item) => item.id !== id),
+            }),
+          ),
+        );
+        queryFulfilled.catch(patchResult.undo);
+      },
+    }),
   }),
 });
 
@@ -65,4 +85,5 @@ export const {
   useGetUsersQuery,
   useUpdateUserMutation,
   useCreateUserMutation,
+  useRemoveUserMutation
 } = userApi;

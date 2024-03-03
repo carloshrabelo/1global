@@ -6,7 +6,7 @@ import Pagination from "@/components/Pagination";
 import UserFormDialog from "@/components/User/UserFormDialog";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
-import { useCreateUserMutation, useGetUsersQuery, useUpdateUserMutation } from "@/store/api/users";
+import { useCreateUserMutation, useGetUsersQuery, useRemoveUserMutation, useUpdateUserMutation } from "@/store/api/users";
 import { Pencil, UserPlus2Icon, UserRoundX } from "lucide-react";
 import * as React from "react";
 
@@ -16,6 +16,7 @@ export default function Home() {
   const { data: users } = useGetUsersQuery(usersFilter);
   const [updateUser] = useUpdateUserMutation();
   const [createUser] = useCreateUserMutation();
+  const [removeUser] = useRemoveUserMutation();
 
   if (!users?.data) return;
   return (
@@ -47,7 +48,11 @@ export default function Home() {
                   <Pencil className="h-4 w-4" />
                 </Button>
               </UserFormDialog>
-              <Button size="icon" variant="destructive">
+              <Button
+                size="icon"
+                variant="destructive"
+                onClick={() => removeUser({ id: user.id, page })}
+              >
                 <UserRoundX className="h-4 w-4" />
               </Button>
             </div>
