@@ -42,9 +42,10 @@ const UserFormDialog = ({
       {actionButton}
       <DialogContent className="sm:max-w-[350px]">
         <DialogHeader>
-          <DialogTitle>Edit User</DialogTitle>
+          <DialogTitle>{user.id ? "Edit" : "New"} User</DialogTitle>
           <DialogDescription>
-            Make changes to user here. Click save when you're done.
+            {user.id ? "Make changes to" : "Create new"} user here. Click save
+            when you're done.
           </DialogDescription>
         </DialogHeader>
         <UserForm

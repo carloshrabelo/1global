@@ -6,8 +6,8 @@ import Pagination from "@/components/Pagination";
 import UserFormDialog from "@/components/User/UserFormDialog";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
-import { useGetUsersQuery, useUpdateUserMutation } from "@/store/api/users";
-import { Pencil, UserRoundX } from "lucide-react";
+import { useCreateUserMutation, useGetUsersQuery, useUpdateUserMutation } from "@/store/api/users";
+import { Pencil, UserPlus2Icon, UserRoundX } from "lucide-react";
 import * as React from "react";
 
 export default function Home() {
@@ -15,6 +15,7 @@ export default function Home() {
   const usersFilter = { page };
   const { data: users } = useGetUsersQuery(usersFilter);
   const [updateUser] = useUpdateUserMutation();
+  const [createUser] = useCreateUserMutation();
 
   if (!users?.data) return;
   return (
@@ -53,6 +54,15 @@ export default function Home() {
           </ListItem>
         ))}
       </List>
+      <div className="fixed bottom-4 right-4">
+        <UserFormDialog
+          onSubmit={(data) => createUser({ ...data, ...usersFilter })}
+        >
+          <Button className="h-12 w-12 rounded-full bg-green-500 hover:bg-green-400">
+            <UserPlus2Icon />
+          </Button>
+        </UserFormDialog>
+      </div>
       <Pagination current={page} pages={users.total_pages} onClick={setPage} />
     </div>
   );
