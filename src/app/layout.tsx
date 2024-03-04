@@ -1,4 +1,5 @@
 import { Toaster } from "@/components/ui/toaster";
+import ThemeProvider from "@/lib/next-themes";
 import StoreProvider from "@/lib/redux";
 import type { Metadata } from "next";
 import { ReactNode } from "react";
@@ -18,8 +19,15 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <head />
       <body className={"min-h-screen bg-background font-sans antialiased"}>
-        <StoreProvider>{children}</StoreProvider>
-        <Toaster />
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <StoreProvider>{children}</StoreProvider>
+          <Toaster />
+        </ThemeProvider>
       </body>
     </html>
   );

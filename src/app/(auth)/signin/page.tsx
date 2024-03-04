@@ -27,7 +27,7 @@ export default function Signin() {
   return (
     <>
       <SignInCard onSubmit={handleSubmit} className="min-w-[350px]" />
-      <Card className="flex-1 space-y-1 bg-slate-200 border-slate-400">
+      <Card className="flex-1 space-y-1 bg-slate-200 border-slate-400 dark:bg-slate-700 dark:border-slate-900">
         <CardHeader>
           <CardTitle>Mock values</CardTitle>
         </CardHeader>

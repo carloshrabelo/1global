@@ -4,6 +4,7 @@ import { LogOutIcon } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
+import ToggleThemeButton from "@/components/ToggleThemeButton";
 import { Button } from "@/components/ui/button";
 import { useLazySignOutQuery } from "@/store/api/auth";
 
@@ -20,6 +21,7 @@ export default function Navbar() {
         </Button>
       </nav>
       <div className="space-x-4">
+        <ToggleThemeButton size="sm" />
         <Button
           size="sm"
           variant="destructive"
