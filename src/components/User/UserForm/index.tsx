@@ -1,14 +1,15 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
+import { cx } from "class-variance-authority";
 import * as React from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
 import TextField from "@/components/TextField";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { User } from "@/types/user";
-import { Avatar, AvatarFallback, AvatarImage } from "../../ui/avatar";
 
 const formSchema = z.object({
   email: z.string().email(),
@@ -30,7 +31,7 @@ export default function UserForm({
   className,
   onSubmit,
   onCancel,
-  avatar,
+  avatar = "/img/user.png",
   email,
   first_name,
   last_name,
@@ -53,7 +54,10 @@ export default function UserForm({
       <div className="w-full flex justify-center">
         <Avatar className="w-[128px] h-[128px]">
           <AvatarImage
-            src={avatar || "https://place-hold.it/128x128"}
+            className={cx({
+              "dark:invert": avatar === "/img/user.png",
+            })}
+            src={avatar}
             alt="@shadcn"
           />
           <AvatarFallback>IMG</AvatarFallback>

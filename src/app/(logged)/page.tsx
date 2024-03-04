@@ -1,17 +1,24 @@
 "use client";
 
+import { cx } from "class-variance-authority";
+import { Pencil, UserPlus2Icon, UserRoundX } from "lucide-react";
+import { useState } from "react";
+
 import List from "@/components/List";
 import ListItem from "@/components/List/ListItem";
 import Pagination from "@/components/Pagination";
 import UserFormDialog from "@/components/User/UserFormDialog";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
-import { useCreateUserMutation, useGetUsersQuery, useRemoveUserMutation, useUpdateUserMutation } from "@/store/api/users";
-import { Pencil, UserPlus2Icon, UserRoundX } from "lucide-react";
-import * as React from "react";
+import {
+  useCreateUserMutation,
+  useGetUsersQuery,
+  useRemoveUserMutation,
+  useUpdateUserMutation,
+} from "@/store/api/users";
 
 export default function Home() {
-  const [page, setPage] = React.useState(1);
+  const [page, setPage] = useState(1);
   const usersFilter = { page };
   const { data: users } = useGetUsersQuery(usersFilter);
   const [updateUser] = useUpdateUserMutation();
@@ -25,7 +32,13 @@ export default function Home() {
         {users.data.map((user) => (
           <ListItem key={user.id} className="gap-3 flex-row">
             <Avatar>
-              <AvatarImage src={user.avatar} />
+              <AvatarImage
+                className={cx({
+                  "dark:invert":
+                    !user.avatar || user.avatar === "/img/user.png",
+                })}
+                src={user.avatar || "/img/user.png"}
+              />
               <AvatarFallback>
                 {user.first_name[0]}
                 {user.last_name[0]}
