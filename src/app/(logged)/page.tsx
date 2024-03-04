@@ -58,12 +58,14 @@ export default function Home() {
                 }
               >
                 <Button size="icon">
-                  <Pencil className="h-4 w-4" />
+                  <Pencil aria-label="Edit user" className="h-4 w-4" />
                 </Button>
               </UserFormDialog>
               <Button
                 size="icon"
                 variant="destructive"
+                aria-label="Remove user"
+                type="button"
                 onClick={() => removeUser({ id: user.id, page })}
               >
                 <UserRoundX className="h-4 w-4" />
@@ -76,7 +78,11 @@ export default function Home() {
         <UserFormDialog
           onSubmit={(data) => createUser({ ...data, ...usersFilter })}
         >
-          <Button className="h-12 w-12 rounded-full bg-green-500 hover:bg-green-400">
+          <Button
+            aria-label="Create new user"
+            type="button"
+            className="h-12 w-12 rounded-full bg-green-500 hover:bg-green-400"
+          >
             <UserPlus2Icon />
           </Button>
         </UserFormDialog>
