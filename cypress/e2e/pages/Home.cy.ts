@@ -4,7 +4,6 @@ import firstUser, {
   usersPage2,
 } from "../../../src/mocks/users";
 
-const url = Cypress.env("url");
 const API = Cypress.env("NEXT_PUBLIC_API");
 
 describe("Home - User Dashboard", () => {
@@ -12,7 +11,7 @@ describe("Home - User Dashboard", () => {
     cy.auth();
     cy.intercept(`${API}users?page=1`, usersPage1).as("getUsers1");
     cy.intercept(`${API}users?page=2`, usersPage2).as("getUsers2");
-    cy.visit(url);
+    cy.visit("/");
   });
 
   it("should display users by pagination", () => {

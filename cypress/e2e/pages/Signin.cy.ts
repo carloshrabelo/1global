@@ -1,13 +1,12 @@
 import { faker } from "@faker-js/faker";
 import user from "../../../src/mocks/users";
 
-const base_url = Cypress.env("url");
-const url = `${base_url}signin`;
 const API = Cypress.env("NEXT_PUBLIC_API");
+const base_url = Cypress.config("baseUrl");
 
 describe("Sign In Page", () => {
   beforeEach(() => {
-    cy.visit(url);
+    cy.visit("/signin");
   });
 
   it("should redirect to homepage after login", () => {
@@ -27,7 +26,6 @@ describe("Sign In Page", () => {
   });
 
   it("should display error messages for invalid input", () => {
-    cy.visit(url);
     cy.contains("Login").click();
 
     cy.contains("Email is required").should("be.visible");

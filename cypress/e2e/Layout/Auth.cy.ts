@@ -1,8 +1,6 @@
-const url = Cypress.env("url");
-const signin_url = `${url}signin`;
 describe("Home - User Dashboard", () => {
   it("should toggle theme", () => {
-    cy.visit(signin_url);
+    cy.visit("signin");
     cy.get("html")
       .then(($el) => $el.css("color-scheme"))
       .then((currentTheme) => {

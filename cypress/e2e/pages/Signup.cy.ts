@@ -1,13 +1,12 @@
 import { faker } from "@faker-js/faker";
 import user from "../../../src/mocks/users";
 
-const base_url = Cypress.env("url");
-const url = `${base_url}signup`;
+const base_url = Cypress.config("baseUrl");
 const API = Cypress.env("NEXT_PUBLIC_API");
 
 describe("Sign Up Page", () => {
   beforeEach(() => {
-    cy.visit(url);
+    cy.visit("signup");
   });
 
   it("should redirect to homepage after register", () => {
@@ -29,7 +28,6 @@ describe("Sign Up Page", () => {
   });
 
   it("should display error messages for invalid input", () => {
-    cy.visit(url);
     cy.get("button[type='submit']").click();
 
     cy.contains("Email is required").should("be.visible");

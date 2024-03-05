@@ -1,14 +1,14 @@
 import { usersPage1 } from "../../../src/mocks/users";
 
-const url = Cypress.env("url");
-const signin_url = `${url}signin`;
+const base_url = Cypress.config("baseUrl");
+const signin_url = `${base_url}signin`;
 const API = Cypress.env("NEXT_PUBLIC_API");
 
 describe("Home - User Dashboard", () => {
   beforeEach(() => {
     cy.auth();
     cy.intercept(`${API}users?page=1`, usersPage1).as("getUsers1");
-    cy.visit(url);
+    cy.visit("/");
   });
 
   it("should toggle theme", () => {

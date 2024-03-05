@@ -6,6 +6,7 @@ dotenv.config();
 export default defineConfig({
   projectId: "x61mvz",
   e2e: {
+    baseUrl: "http://localhost:3000/",
     setupNodeEvents(_on, _config) {},
   },
   component: {
@@ -16,6 +17,5 @@ export default defineConfig({
   },
   env: {
     ...process.env,
-    url: "http://localhost:3000/",
   },
 });
