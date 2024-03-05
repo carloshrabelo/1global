@@ -34,7 +34,7 @@ const formSchema = z
   });
 
 export type SignUpCardProps = {
-  className: string;
+  className?: string;
   onSubmit: (values: z.infer<typeof formSchema>) => void;
 };
 
