@@ -15,6 +15,8 @@ This project is a simple application made in React using the [Reqres.in API](htt
 
 This application implements a simple authentication and listing system with CRUD, available only to authenticated users
 
+This application is also available on [github pages](http://carloshrabelo.dev/1global/)
+
 ## Preview
 | Page                   | Ligth                           | Dark                           |
 | ------------------------- | -------------------------------- | -------------------------------- |
