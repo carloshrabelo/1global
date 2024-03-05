@@ -34,7 +34,7 @@ In a real application, new users should go to the end of the page and when remov
 
 ## Installation
 
-You need the [node](https://nodejs.org/en/download/) to run this project, this example was created for the version `v18.19.1`. Dependencies was installed with [yarn](https://classic.yarnpkg.com/en/)
+You need the [node](https://nodejs.org/en/download/) to run this project, this example was created for the version `v20.10.0`. Dependencies was installed with [yarn](https://classic.yarnpkg.com/en/)
 
 ### Install yarn
 ```bash
