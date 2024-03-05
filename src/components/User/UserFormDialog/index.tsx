@@ -32,7 +32,7 @@ const UserFormDialog = ({
   const actionButton = children ? (
     cloneElement(children as React.ReactElement, { onClick: openDialog })
   ) : (
-    <Button size="icon" onClick={openDialog}>
+    <Button size="icon" onClick={openDialog} data-cy="user-form-dialog-button">
       <UserRound className="h-4 w-4" />
     </Button>
   );
