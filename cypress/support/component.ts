@@ -2,6 +2,7 @@ import "./commands";
 
 import { mount } from "cypress/react18";
 import "../../src/app/globals.css";
+import { mountWithTheme } from "./mountWithTheme";
 
 declare global {
   namespace Cypress {
@@ -11,4 +12,4 @@ declare global {
   }
 }
 
-Cypress.Commands.add("mount", mount);
+Cypress.Commands.add("mount", mountWithTheme);
