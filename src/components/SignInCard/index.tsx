@@ -26,7 +26,7 @@ const formSchema = z.object({
 });
 
 export type SignInCardProps = {
-  className: string;
+  className?: string;
   onSubmit: (values: z.infer<typeof formSchema>) => void;
 };
 
