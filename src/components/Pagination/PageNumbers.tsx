@@ -2,7 +2,7 @@ import React, { useMemo } from "react";
 
 import { PaginationItem, PaginationLink } from "@/components/ui/pagination";
 
-const PAGE_DISTANCE = 2;
+export const PAGE_DISTANCE = 2;
 
 interface PageNumbersProps {
   current: number;
@@ -23,17 +23,22 @@ const PageNumbers = ({ current, pages, onClick }: PageNumbersProps) => {
 
   return (
     <>
-      {currentNumbers.map((number) => (
-        <PaginationItem key={number}>
-          <PaginationLink
-            onClick={() => onClick(number)}
-            aria-current={current === number ? "page" : undefined}
-            isActive={current === number}
-          >
-            {number}
-          </PaginationLink>
-        </PaginationItem>
-      ))}
+      {currentNumbers.map((number) => {
+        const isActive = current === number;
+
+        return (
+          <PaginationItem key={number}>
+            <PaginationLink
+              onClick={() => !isActive && onClick(number)}
+              aria-current={isActive ? "page" : undefined}
+              aria-label={`go to page ${number}`}
+              isActive={isActive}
+            >
+              {number}
+            </PaginationLink>
+          </PaginationItem>
+        );
+      })}
     </>
   );
 };
